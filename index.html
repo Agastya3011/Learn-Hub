@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover curated learning resources across multiple topics. Search, learn, and grow with our comprehensive educational hub featuring high-quality courses, tutorials, and guides.">
+    <meta name="keywords" content="learning resources, online education, tutorials, courses, skill development, knowledge base">
+    <meta name="author" content="Learning Resources Hub">
+    <meta property="og:title" content="Learning Resources Hub - Curated Educational Content">
+    <meta property="og:description" content="Discover high-quality learning resources across multiple topics. Your gateway to continuous learning and skill development.">
+    <meta property="og:type" content="website">
+    <title>Learning Resources Hub - Curated Educational Content | Search, Learn, Grow</title>
+    
+    <!-- Structured Data for SEO -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Learning Resources Hub",
+      "description": "Curated learning resources and educational content across multiple topics",
+      "url": "https://example.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://example.com/search?topic={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-bg: #1a1a2e;
+            --darker-bg: #16213e;
+            --card-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-primary: #ffffff;
+            --text-secondary: #b8c6db;
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.3);
+            --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.2);
+            --border-radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            background-image: 
+                radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(120, 200, 255, 0.2) 0%, transparent 50%);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 60%;
+            right: 10%;
+            animation-delay: -7s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 30%;
+            right: 30%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-30px) rotate(120deg); }
+            66% { transform: translateY(30px) rotate(240deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .logo {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        .controls {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-md);
+            transition: var(--transition);
+        }
+
+        .controls:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .search-wrapper {
+            position: relative;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            z-index: 2;
+        }
+
+        select {
+            width: 100%;
+            padding: 1rem 1rem 1rem 60px;
+            border: 2px solid transparent;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            backdrop-filter: blur(10px);
+            transition: var(--transition);
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 1rem center;
+            background-repeat: no-repeat;
+            background-size: 1rem;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        select option {
+            background: var(--darker-bg);
+            color: var(--text-primary);
+            padding: 1rem;
+        }
+
+        .dashboard {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-md);
+            min-height: 400px;
+            transition: var(--transition);
+        }
+
+        .initial-message {
+            text-align: center;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            padding: 4rem 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            padding: 4rem 2rem;
+            color: var(--text-secondary);
+        }
+
+        .loading-spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--text-secondary);
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .topic-section {
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .topic-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+        }
+
+        .topic-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--secondary-gradient);
+            border-radius: 2px;
+        }
+
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--accent-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .resource-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(102, 126, 234, 0.3);
+        }
+
+        .resource-item:hover::before {
+            transform: scaleX(1);
+        }
+
+        .resource-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            line-height: 1.3;
+        }
+
+        .resource-title a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .resource-title a:hover {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .resource-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        .resource-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .meta-tag {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .error-message {
+            text-align: center;
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .resource-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .toggle-btn {
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .toggle-btn.active,
+        .toggle-btn:hover {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .controls {
+                padding: 1.5rem;
+            }
+            
+            .dashboard {
+                padding: 1.5rem;
+            }
+            
+            .resource-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .stats-bar {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+        }
+
+        /* Focus styles for accessibility */
+        *:focus {
+            outline: 2px solid #667eea;
+            outline-offset: 2px;
+        }
+
+        /* Print styles */
+        @media print {
+            .animated-bg,
+            .floating-elements {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="floating-elements">
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+            <div class="floating-element"></div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1 class="logo">Learning Hub</h1>
+            <p class="tagline">Discover. Learn. Grow. Your gateway to knowledge.</p>
+        </header>
+
+        <div class="controls">
+            <div class="search-wrapper">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+                <select id="topic-select" aria-label="Select a learning topic">
+                    <option value="">🔍 Explore all topics...</option>
+                </select>
+            </div>
+        </div>
+
+        <main>
+            <div id="dashboard" class="dashboard" role="main" aria-live="polite">
+                <div class="initial-message">
+                    🚀 Search, Learn, Grow
+                    <br><small style="font-size: 0.8em; opacity: 0.7;">Select a topic to discover curated learning resources</small>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const topicSelect = document.getElementById('topic-select');
+        const dashboard = document.getElementById('dashboard');
+        let currentView = 'grid';
+
+        // Enhanced loading animation
+        function showLoading() {
+            dashboard.innerHTML = `
+                <div class="loading">
+                    <div class="loading-spinner"></div>
+                    <span>Loading amazing resources...</span>
+                </div>
+            `;
+        }
+
+        // Enhanced error display
+        function showError(message) {
+            dashboard.innerHTML = `
+                <div class="error-message">
+                    <h3>⚠️ Oops! Something went wrong</h3>
+                    <p>${message}</p>
+                    <p><small>Please check your connection and try again.</small></p>
+                </div>
+            `;
+        }
+
+        // Function to fetch and populate topics dropdown
+        async function populateTopics() {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/topics');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const topics = await response.json();
+                
+                topicSelect.innerHTML = '<option value="">🔍 Explore all topics...</option>'; 
+
+                topics.forEach(topic => {
+                    const option = document.createElement('option');
+                    option.value = topic;
+                    option.textContent = `📚 ${topic}`;
+                    topicSelect.appendChild(option);
+                });
+            } catch (error) {
+                console.error('Error fetching topics:', error);
+                showError('Failed to load topics. Please check your connection and try again.');
+            }
+        }
+
+        // Function to fetch and display resources for a selected topic
+        async function fetchResourcesByTopic(topic) {
+            showLoading();
+            try {
+                const url = topic ? `http://127.0.0.1:5000/search?topic=${encodeURIComponent(topic)}` : 'http://127.0.0.1:5000/search';
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                displayResources(data, topic);
+            } catch (error) {
+                console.error('Error fetching resources:', error);
+                showError(`Failed to load resources${topic ? ` for "${topic}"` : ''}. Please try again later.`);
+            }
+        }
+
+        // Function to display resources in the dashboard with enhanced UI
+        function displayResources(data, selectedTopic) {
+            dashboard.innerHTML = '';
+
+            if (data.length === 0) {
+                dashboard.innerHTML = `
+                    <div class="initial-message">
+                        📭 No resources found
+                        <br><small style="font-size: 0.8em; opacity: 0.7;">Try selecting a different topic</small>
+                    </div>
+                `;
+                return;
+            }
+
+            if (!selectedTopic) {
+                // Display all topics
+                let totalResources = 0;
+                data.forEach(category => {
+                    if (category.resources) totalResources += category.resources.length;
+                });
+
+                const statsBar = document.createElement('div');
+                statsBar.className = 'stats-bar';
+                statsBar.innerHTML = `
+                    <div class="resource-count">📊 Found ${totalResources} resources across ${data.length} topics</div>
+                `;
+                dashboard.appendChild(statsBar);
+
+                data.forEach((category, index) => {
+                    if (category.resources && category.resources.length > 0) {
+                        const topicSection = document.createElement('section');
+                        topicSection.className = 'topic-section';
+                        topicSection.style.animationDelay = `${index * 0.1}s`;
+
+                        const topicTitle = document.createElement('h2');
+                        topicTitle.className = 'topic-title';
+                        topicTitle.textContent = category.topic;
+                        topicSection.appendChild(topicTitle);
+
+                        const resourceGrid = document.createElement('div');
+                        resourceGrid.className = 'resource-grid';
+
+                        category.resources.forEach(resource => {
+                            resourceGrid.appendChild(createResourceItem(resource));
+                        });
+                        topicSection.appendChild(resourceGrid);
+                        dashboard.appendChild(topicSection);
+                    }
+                });
+            } else {
+                // Display resources for a specific topic
+                const statsBar = document.createElement('div');
+                statsBar.className = 'stats-bar';
+                statsBar.innerHTML = `
+                    <div class="resource-count">📚 ${data.length} resources for "${selectedTopic}"</div>
+                `;
+                dashboard.appendChild(statsBar);
+
+                const resourceGrid = document.createElement('div');
+                resourceGrid.className = 'resource-grid';
+                data.forEach(resource => {
+                    resourceGrid.appendChild(createResourceItem(resource));
+                });
+                dashboard.appendChild(resourceGrid);
+            }
+        }
+
+        // Enhanced resource item creation
+        function createResourceItem(resource) {
+            const item = document.createElement('article');
+            item.className = 'resource-item';
+            item.setAttribute('role', 'article');
+
+            const titleElement = document.createElement('h3');
+            titleElement.className = 'resource-title';
+            const link = document.createElement('a');
+            link.href = resource.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            link.textContent = resource.title;
+            link.setAttribute('aria-label', `Open ${resource.title} in new tab`);
+            titleElement.appendChild(link);
+            item.appendChild(titleElement);
+
+            if (resource.description) {
+                const descriptionElement = document.createElement('p');
+                descriptionElement.className = 'resource-description';
+                descriptionElement.textContent = resource.description;
+                item.appendChild(descriptionElement);
+            }
+
+            const metaDiv = document.createElement('div');
+            metaDiv.className = 'resource-meta';
+            metaDiv.setAttribute('aria-label', 'Resource metadata');
+
+            if (resource.type) {
+                const typeTag = document.createElement('span');
+                typeTag.className = 'meta-tag';
+                typeTag.textContent = resource.type;
+                metaDiv.appendChild(typeTag);
+            }
+            if (resource.category) {
+                const categoryTag = document.createElement('span');
+                categoryTag.className = 'meta-tag';
+                categoryTag.textContent = resource.category;
+                metaDiv.appendChild(categoryTag);
+            }
+            item.appendChild(metaDiv);
+
+            return item;
+        }
+
+        // Enhanced event listener with analytics tracking simulation
+        topicSelect.addEventListener('change', (event) => {
+            const selectedTopic = event.target.value;
+            
+            // Simulate analytics tracking
+            console.log('Topic selected:', selectedTopic || 'All topics');
+            
+            if (selectedTopic) {
+                fetchResourcesByTopic(selectedTopic);
+            } else {
+                dashboard.innerHTML = `
+                    <div class="initial-message">
+                        🚀 Search, Learn, Grow
+                        <br><small style="font-size: 0.8em; opacity: 0.7;">Select a topic to discover curated learning resources</small>
+                    </div>
+                `;
+            }
+        });
+
+        // Enhanced initialization with performance optimization
+        document.addEventListener('DOMContentLoaded', () => {
+            // Preload critical resources
+            const preloadLink = document.createElement('link');
+            preloadLink.rel = 'preconnect';
+            preloadLink.href = 'http://127.0.0.1:5000';
+            document.head.appendChild(preloadLink);
+            
+            populateTopics();
+            
+            // Add keyboard navigation
+            topicSelect.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter') {
+                    event.target.dispatchEvent(new Event('change'));
+                }
+            });
+        });
+
+        // Add smooth scrolling for better UX
+        document.documentElement.style.scrollBehavior = 'smooth';
+    </script>
+</body>
+</html>
