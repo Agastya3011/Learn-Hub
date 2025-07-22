@@ -1,1 +1,7 @@
-npx wrangler deploy --assets=./public
+{
+  "name": "your-project-name", // Replace with a unique name for your project/site
+  "compatibility_date": "2025-07-22", // This date is important. Use today's date if setting up now.
+  "assets": {
+    "directory": "./public" // This tells Wrangler where your static files are
+  }
+}
