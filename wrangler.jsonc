@@ -1,8 +1,7 @@
-// wrangler.jsonc
 {
-  "name": "Learn-Hub", // Your project name from the screenshot
-  "compatibility_date": "2025-07-22", // Keep this as current date or later
+  "name": "Learn-Hub",
+  "compatibility_date": "2025-07-22",
   "assets": {
-    "directory": "./" // This tells Wrangler to serve assets from the current directory (repository root)
+    "directory": "./" // THIS IS THE CRUCIAL CHANGE
   }
 }
